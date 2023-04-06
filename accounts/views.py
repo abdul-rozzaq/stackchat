@@ -7,7 +7,7 @@ class RegisterView(View):
         return render(request, 'accounts/register.html')
     
     
-    def post(self, requets):
+    def post(self, request):
         return render(request, 'accounts/register.html')
         
         
@@ -16,6 +16,6 @@ class LoginView(View):
         return render(request, 'accounts/login.html')
     
     
-    def post(self, requets):
+    def post(self, request):
         return render(request, 'accounts/login.html')
         

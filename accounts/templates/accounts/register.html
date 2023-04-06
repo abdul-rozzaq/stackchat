@@ -1,0 +1,28 @@
+{% load static %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Register</title>
+    <link rel="stylesheet" href="{% static '' %}">
+</head>
+<body>
+    <div>
+        <div class="register_page">
+            <div class="image">
+                <img src="{% static 'images/logo/logo.png' %}" alt="">
+            </div>
+            <form method="POST">
+                <p>Name</p>
+                <input type="text" name="first_name" placeholder="Your name enter please" required>
+                <p>Email</p>
+                <input type="email" name="email" placeholder="Your name enter please" required> 
+                <p>Password</p>
+                <input type="password" name="passqord" placeholder="Your name enter please" required>
+            </form>
+        </div>
+    </div>
+</body>
+</html>
