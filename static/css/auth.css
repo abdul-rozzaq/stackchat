@@ -2,4 +2,15 @@
     align-items: center;
     justify-content: center;
     display: flex;
+    gap: 50px;
+    margin: 90px;
+}
+.register_page form input{
+    width: 400px;
+    height: 30px;
+    padding-left: 10px;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    border-radius: 5px;
+    border: 2px solid dodgerblue;
+    outline: none;
 }
