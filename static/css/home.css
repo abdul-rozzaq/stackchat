@@ -6,9 +6,26 @@
     text-decoration: none !important;
 }
 
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    border-radius: 10px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 6px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    border-radius: 10px;
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #CACACA;
+}
 
 body {
     background-color: dodgerblue;
+    overflow: hidden;
 }
 
 .container {
@@ -21,10 +38,8 @@ body {
     width: 25vw;
 }
 
-
 .container .left .top {
     padding: 5px;
-    /* background-color: wheat; */
     display: flex;
     justify-content: center;
 }
@@ -38,6 +53,8 @@ body {
 }
 
 .users {
+    height: 100vh;
+    overflow: scroll;
     padding: 5px;
 }
 
@@ -52,7 +69,6 @@ body {
     background-color: dodgerblue;
     display: flex;
     align-items: center;
-
     -webkit-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
     -moz-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
     box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
@@ -66,27 +82,57 @@ body {
     justify-content: center;
     align-items: center;
     background-color: #ffc107;
-
 }
-
-
-/* =================================== */
 
 .container .right {
     width: 75vw;
-
+    position: relative;
 }
 
-.floating-form {
-    padding: 10px;
-    right: 0;
-    bottom: 0;
-    position: fixed;
+.floating-form {  
+    position: absolute;
+    bottom: 20px;
     width: 90%;
     background-color: #ffc107;
-
+    right: 50%;
+    transform: translateX(50%);
+    border-radius: 10px;
 }
 
 .floating-form input[type="text"] {
     width: 100%;
+    height: 50px;
+    border: none;
+    outline: none;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.right .messages {
+    padding: 20px;
+    overflow-y: auto;
+    height: 100vh;
+}
+
+.messages .message {
+    display: flex;
+    margin-bottom: 2px;
+}
+
+.messages .self.message {
+    justify-content: end;
+}
+
+.messages .message .message-text {
+    padding: 10px;
+    color: white;
+    background-color: #01539D;
+    border-radius: 8px 8px 8px 0px ;
+}
+
+.messages .self.message .message-text {
+    padding: 10px;
+    color: black;
+    background-color: #EEA47F;
+    border-radius: 8px 8px 0px 8px ;
 }
