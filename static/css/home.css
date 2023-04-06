@@ -1,0 +1,92 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+    text-decoration: none !important;
+}
+
+
+body {
+    background-color: dodgerblue;
+}
+
+.container {
+    display: flex;
+    height: 100vh;
+}
+
+.container .left {
+    background-color: white;
+    width: 25vw;
+}
+
+
+.container .left .top {
+    padding: 5px;
+    /* background-color: wheat; */
+    display: flex;
+    justify-content: center;
+}
+
+.container .left .top input {
+    padding: 10px;
+    width: 100%;
+    outline: none;
+    border-radius: 5px;
+    border: 2px solid dodgerblue;
+}
+
+.users {
+    padding: 5px;
+}
+
+.users .user {
+    gap: 20px;
+    font-size: 20px;
+    cursor: pointer;
+    color: white;
+    margin-bottom: 10px;
+    padding: 5px;
+    border-radius: 5px;
+    background-color: dodgerblue;
+    display: flex;
+    align-items: center;
+
+    -webkit-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    -moz-box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+    box-shadow: 0px 5px 5px -5px rgba(34, 60, 80, 0.6);
+}
+
+.users .user .logo {
+    width: 50px;
+    height: 50px;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    background-color: #ffc107;
+
+}
+
+
+/* =================================== */
+
+.container .right {
+    width: 75vw;
+
+}
+
+.floating-form {
+    padding: 10px;
+    right: 0;
+    bottom: 0;
+    position: fixed;
+    width: 90%;
+    background-color: #ffc107;
+
+}
+
+.floating-form input[type="text"] {
+    width: 100%;
+}
