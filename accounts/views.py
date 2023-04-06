@@ -2,6 +2,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import View
 
 from django.contrib.auth.models import User
+from django.contrib.auth import login, logout, authenticate
 
 
 class RegisterView(View):
@@ -17,7 +18,10 @@ class RegisterView(View):
             password = requets.POST.get('password')
             
             user = User.objects.create_user(username=username, email=email, password=password)
-                        
+            login(requets, user)
+            
+            return redirect('home')
+                    
         except Exception as e:
             print(f'Register error {str(e).strip()}')
         
@@ -29,8 +33,6 @@ class LoginView(View):
         return render(request, 'accounts/login.html')
     
     
-    def post(self, requets):
-        
-        
+    def post(self, requets):        
         return render(requets, 'accounts/login.html')
         
