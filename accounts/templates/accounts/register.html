@@ -14,13 +14,15 @@
             <div class="image">
                 <img src="{% static 'images/logo/logo.png' %}" alt="">
             </div>
-            <form method="POST">
+            <form method="POST"> {% csrf_token %}
                 <p>Name</p>
                 <input type="text" name="username" placeholder="Your name enter please" required>
                 <p>Email</p>
                 <input type="email" name="email" placeholder="Your name enter please" required> 
                 <p>Password</p>
                 <input type="password" name="passqord" placeholder="Your name enter please" required>
+                <p></p>
+                <input type="submit" value="Submit">
             </form>
         </div>
     </div>

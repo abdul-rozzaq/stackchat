@@ -1,3 +1,9 @@
+* {
+    box-sizing: border-box;
+    font-family: Verdana, Geneva, Tahoma, sans-serif;
+}
+p {font-size: 20px;}
+
 .register_page{
     align-items: center;
     justify-content: center;
@@ -7,10 +13,16 @@
 }
 .register_page form input{
     width: 400px;
-    height: 30px;
+    height: 50px;
     padding-left: 10px;
     font-family: Verdana, Geneva, Tahoma, sans-serif;
     border-radius: 5px;
     border: 2px solid dodgerblue;
     outline: none;
+}
+
+.register_page form input[type=submit] {
+    background-color: dodgerblue;
+    color: white;
+    font-size: 20px;
 }
