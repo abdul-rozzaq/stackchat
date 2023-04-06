@@ -12,14 +12,11 @@ class RegisterView(View):
     def post(self, requets):        
         
         try:
-            first_name = requets.POST.get('first-name')
-            last_name = requets.POST.get('last-name')
             username = requets.POST.get('username')
             email = requets.POST.get('email')
-            
             password = requets.POST.get('password')
-             
-            user = User.objects.create_user(first_name=first_name,last_name=last_name,email=email,username=username)    
+            
+            user = User.objects.create_user(username=username, email=email, password=password)
                         
         except Exception as e:
             print(f'Register error {str(e).strip()}')

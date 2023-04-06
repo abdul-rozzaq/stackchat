@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
@@ -8,17 +9,19 @@
     <title>Stack Chat App</title>
     <link rel="stylesheet" href="{% static 'css/main.css' %}">
 </head>
+
 <body>
     <div>
         <div class="container">
             <div class="image">
                 <img src="{% static 'images/logo/logo.png' %}" alt="">
             </div>
-        <div class="register-btn">
-            <button><a style="color: white;" href="{% url 'login' %}">Login</a></button>
-            <button><a style="color: white;" href="{% url 'register' %}">Sign Up</a></button>
+            <div class="register-btn">
+                <a style="color: white;" href="{% url 'login' %}"><span>Login</span></a>
+                <a style="color: white;" href="{% url 'register' %}"><span>Sign Up</span></a>
+            </div>
         </div>
     </div>
-    </div>
 </body>
+
 </html>
