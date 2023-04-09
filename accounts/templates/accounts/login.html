@@ -14,7 +14,7 @@
             <div class="image">
                 <img src="{% static 'images/logo/logo.png' %}" alt="">
             </div>
-            <form method="POST">
+            <form method="POST"> {% csrf_token %}
                 <p>Name</p>
                 <input type="text" name="username" placeholder="Enter username" required>
                 <p>Password</p>

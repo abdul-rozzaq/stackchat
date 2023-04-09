@@ -1,0 +1,91 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+
+<div class="top">
+    <div class="logo">
+        {% if chat.u1 != request.user %}
+            <span>{{ chat.u1.username.0|capfirst }}</span>
+        {% else %}
+            <span>{{ chat.u2.username.0|capfirst }}</span>
+        {% endif %}
+    </div>
+    <div class="username">
+        {% if chat.u1 != request.user %}
+            <span>{{ chat.u1.username }}</span>
+        {% else %}
+            <span>{{ chat.u2.username }}</span>
+        {% endif %}
+    </div>
+</div>
+<div class="msg-container">
+    <div class="messages" id="messages">
+        {% for message in messages %}
+            {% if message.sender != request.user  %}
+                <div class="message">
+                    <div class="message-text">
+                        {{ message.text }}
+                    </div>
+                </div>            
+            {% else %}
+                <div class="self message">
+                    <div class="message-text">
+                        {{ message.text }}
+                    </div>
+                </div>
+            {% endif %}
+        {% endfor %}
+    </div>
+</div>
+<div class="floating-form" method="post">
+    <input type="text"  class="text-box" placeholder="Send message..." autofocus>
+</div>
+
+{% endblock content %}
+
+
+{% block script %}
+
+<script>    
+    
+    const getUserId = () => window.location.href.split('/')[4]
+    const socket = new WebSocket('ws://'+ window.location.host+ '/ws/chat/' + getUserId() + '/' );
+    
+    const selfMessage = (text) => `<div class="self message"><div class="message-text">${text}</div></div>`
+    const message = (text) => `<div class="message"><div class="message-text">${text}</div></div>`
+    
+    const scroll = () => {document.querySelector('#messages').scrollTo(0, document.querySelector('#messages').scrollHeight)}
+    scroll();
+    
+    socket.onmessage = function (e){
+        let jsonDate = JSON.parse(e.data);
+        if (jsonDate.sender != '{{ request.user.pk }}') {
+            messages.innerHTML += message(jsonDate['text']);
+            scroll();
+        }
+    }
+    
+    const messages = document.querySelector('#messages')
+    const input = document.querySelector('.text-box')
+
+    socket.onclose = function(e) {
+        console.error('Chat socket closed unexpectedly');
+    };
+
+    
+    input.onkeyup = function (e) {
+        if (e.keyCode === 13) {
+            messages.innerHTML += selfMessage(input.value)
+            socket.send(JSON.stringify({
+                'message': input.value,
+            }))
+            
+            input.value = ''
+            scroll();
+        }
+    };
+</script>
+
+
+<script src="{% static 'js/websocket-js.js' %}"></script>
+{% endblock script %}

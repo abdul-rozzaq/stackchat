@@ -2,7 +2,7 @@ from django.shortcuts import redirect, render
 from django.views.generic import View
 
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout, authenticate
+from django.contrib.auth import login, logout as lgt, authenticate, decorators
 
 
 class RegisterView(View):
@@ -33,6 +33,25 @@ class LoginView(View):
         return render(request, 'accounts/login.html')
     
     
-    def post(self, requets):        
-        return render(requets, 'accounts/login.html')
-        
+    def post(self, request):
+        try:
+            username = request.POST['username']
+            password = request.POST['password']
+            
+            
+            user = authenticate(username=username, password=password)
+            
+            if user is not None:
+                login(request, user)
+                return redirect('home')
+                
+        except Exception as e:
+            print(f'Login error {str(e).strip()}')
+             
+        return render(request, 'accounts/login.html')
+
+
+@decorators.login_required(login_url='auth')
+def logout(request):
+    lgt(request)
+    return redirect('login')
