@@ -38,6 +38,7 @@ body {
 }
 
 .container .left {
+    position: relative;
     background-color: white;
     width: 25vw;
 }
@@ -46,6 +47,10 @@ body {
     padding: 5px;
     display: flex;
     justify-content: center;
+}
+
+.container .left .top form {
+    width: 100%;
 }
 
 .container .left .top input {
@@ -88,12 +93,30 @@ body {
     background-color: #ffc107;
 }
 
+
+.logout {
+    position: absolute;
+    bottom: 0;
+    width: 100%;
+}
+
+.logout a {
+    width: 100%;
+    background-color: #01539D;
+    cursor: pointer;
+    padding: 10px;
+    display: inline-block;
+    color: white !important;
+}
+
+/* ================================= */
 .container .right {
     width: 75vw;
     position: relative;
 }
 
 .floating-form {  
+   box-shadow: 0 5px 15px 0 rgba(0,0,0,0.2); 
     position: absolute;
     bottom: 20px;
     width: 90%;
@@ -101,15 +124,29 @@ body {
     right: 50%;
     transform: translateX(50%);
     border-radius: 10px;
+    display: flex;
 }
 
 .floating-form input[type="text"] {
-    width: 100%;
+    width: 95%;
     height: 50px;
     border: none;
     outline: none;
     padding: 10px 20px;
-    border-radius: 5px;
+    border-radius: 5px 0 0 5px;
+}
+.floating-form .select-image {
+    background-color: #01539D;
+    width: 5%;
+    height: 50px;
+    border: none;
+    padding: 10px 20px;
+    border-radius: 0 5px 5px 0;
+    cursor: pointer;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: white;
 }
 
 .right .msg-container  {
@@ -137,20 +174,30 @@ body {
     justify-content: end;
 }
 
-.messages .message .message-text {
-    max-width: 70%;
+.messages .message .message-content {
+    max-width: 60%;
     padding: 10px;
     color: white;
     background-color: #01539D;
     border-radius: 8px 8px 8px 0px ;
 }
 
-.messages .self.message .message-text {
+.messages .self.message .message-content {
     padding: 10px;
     color: black;
     background-color: #EEA47F;
     border-radius: 8px 8px 0px 8px ;
 }
+
+
+.messages .message .message-content img {
+    cursor: pointer;
+    max-width: 100%;
+    width: min-content;
+    height: auto !important;
+    object-fit: cover;
+}
+
 
 /* =========================================== */
 

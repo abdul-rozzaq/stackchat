@@ -2,38 +2,11 @@ from django.shortcuts import redirect, render
 from django.views.generic import View
 
 from django.contrib.auth.models import User
-from django.contrib.auth import login, logout as lgt, authenticate, decorators
+from django.contrib.auth import login as lgn, logout as lgt, authenticate, decorators
 
 
-class RegisterView(View):
-    def get(self,request):
-        return render(request, 'accounts/register.html')
-    
-    
-    def post(self, requets):        
-        
-        try:
-            username = requets.POST.get('username')
-            email = requets.POST.get('email')
-            password = requets.POST.get('password')
-            
-            user = User.objects.create_user(username=username, email=email, password=password)
-            login(requets, user)
-            
-            return redirect('home')
-                    
-        except Exception as e:
-            print(f'Register error {str(e).strip()}')
-        
-        return render(requets, 'accounts/register.html')
-        
-        
-class LoginView(View):
-    def get(self,request):
-        return render(request, 'accounts/login.html')
-    
-    
-    def post(self, request):
+def login(request):
+    if request.method == 'POST':
         try:
             username = request.POST['username']
             password = request.POST['password']
@@ -42,13 +15,37 @@ class LoginView(View):
             user = authenticate(username=username, password=password)
             
             if user is not None:
-                login(request, user)
+                lgn(request, user)
                 return redirect('home')
-                
+            else:
+                print('User not found')   
         except Exception as e:
             print(f'Login error {str(e).strip()}')
-             
-        return render(request, 'accounts/login.html')
+                
+    return render(request, 'accounts/login.html')
+
+
+def register(request):
+    if request.method == 'POST':
+        try:
+            username = request.POST.get('username')
+            email = request.POST.get('email')
+            password = request.POST.get('password')
+                        
+            user = User.objects.create_user(username=username, email=email, password=password)
+            
+            lgn(request, user)
+            
+            return redirect('home')
+                    
+        except Exception as e:
+            print(f'Register error {str(e).strip()}')
+        
+        return render(request, 'accounts/register.html')
+        
+        
+    
+    return render(request, 'accounts/register.html')
 
 
 @decorators.login_required(login_url='auth')

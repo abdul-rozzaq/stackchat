@@ -5,7 +5,6 @@ from .models import *
 
 
 admin.site.register(Message)
+admin.site.register(Chat)
 
-@admin.register(Chat)
-class ChatAdmin(admin.ModelAdmin):
-    list_display = ('pk', 'u1', 'u2')
+

@@ -5,19 +5,25 @@
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <link rel="icon" href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F4436%2F4436481.png&tbnid=islFQXho74BZYM&vet=12ahUKEwiFlq6TvJ3-AhXBvSoKHUUqBIgQMygDegUIARDCAQ..i&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fcorrect_4436481&docid=ETk63VyPjCf6TM&w=512&h=512&q=icon&client=ubuntu-sn&ved=2ahUKEwiFlq6TvJ3-AhXBvSoKHUUqBIgQMygDegUIARDCAQ" type="image/x-icon">
+    <!-- <link rel="icon" href="https://www.google.com/imgres?imgurl=https%3A%2F%2Fcdn-icons-png.flaticon.com%2F512%2F4436%2F4436481.png&tbnid=islFQXho74BZYM&vet=12ahUKEwiFlq6TvJ3-AhXBvSoKHUUqBIgQMygDegUIARDCAQ..i&imgrefurl=https%3A%2F%2Fwww.flaticon.com%2Ffree-icon%2Fcorrect_4436481&docid=ETk63VyPjCf6TM&w=512&h=512&q=icon&client=ubuntu-sn&ved=2ahUKEwiFlq6TvJ3-AhXBvSoKHUUqBIgQMygDegUIARDCAQ" type="image/x-icon"> -->
     <link rel="stylesheet" href="{% static 'css/home.css' %}">
+    <link rel="stylesheet" href="{% static 'css/modal.css' %}">
+
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css"> -->
+
 </head>
 <body>
     
     <div class="container">
         <div class="left">
             <div class="top">
-                <input type="search" name="q">
+                <form method="POST">{% csrf_token %}
+                    <input type="search" name="q" placeholder="Username ...">
+                </form>
             </div>
             <div class="users">
                 {% for chat in chats %}
-                    <a href="{% url 'chat' chat.pk %}">
+                    <a href="{% url 'chat' chat.pk %}" draggable="false">
                         <div class="user">
                             <div class="logo">
                                 {% if chat.u1 != request.user %}
@@ -37,6 +43,9 @@
                     </a>
                 {% endfor %}
             </div>
+            <div class="logout">
+                <a href="{% url 'logout' %}">{{ request.user.username }}</a>
+            </div>
         </div>
         <div class="right">
             {% block content %}
@@ -49,9 +58,17 @@
         </div>
     </div>
 
+    {{ request.user.id|json_script:"user-id" }}
 
+    <div class="modal">
+        <div class="modal-window">
+            <div class="close"></div>
+            <img src="" alt="" id="modal-image">
+            <div class="send">Send</div>
+        </div>
+    </div>
+    
 
-    {% block script %}
-    {% endblock script %}
+    <script src="{% static 'js/websocket-js.js' %}"></script>
 </body>
 </html>

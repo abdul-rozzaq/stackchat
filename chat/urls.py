@@ -7,3 +7,4 @@ urlpatterns = [
     path('', home, name='home'),
     path('chat/<pk>/', chat, name='chat'),  
 ]
+

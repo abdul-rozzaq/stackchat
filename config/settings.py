@@ -1,13 +1,19 @@
+import os
+
 from pathlib import Path
+from environs import Env
+
+env = Env()
+env.read_env()
 
 BASE_DIR = Path(__file__).resolve().parent.parent
 
 
-SECRET_KEY = 'django-insecure-_w&35fp@(p)*k1ljt&zjjvm-3#$*)^$xd3^r&1j1iowzb%hlar'
+SECRET_KEY = env.str('SECRET_KEY')
 
-DEBUG = True
+DEBUG = env.bool('DEBUG', default=False)
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', '.heroku.app', '*']
 
 
 # Application definition
@@ -23,6 +29,7 @@ INSTALLED_APPS = [
     'django.contrib.staticfiles',
     
     # external
+    
     
     
     # local
@@ -65,8 +72,12 @@ ASGI_APPLICATION = 'config.asgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.postgresql_psycopg2',
+        'NAME': 'stackchat',
+        'USER': 'postgres',
+        'PASSWORD': 'gamerboy',
+        'HOST': '127.0.0.1',
+        'PORT': '5432',
     }
 }
 
@@ -97,8 +108,9 @@ USE_I18N = True
 
 USE_TZ = True
 
-STATIC_URL = 'static/'
-STATICFILES_DIRS = [BASE_DIR / 'static']
+STATIC_URL = '/static/'
+STATIC_ROOT = os.path.join(BASE_DIR, 'staticfiles')
+STATICFILES_DIRS = [os.path.join(BASE_DIR, 'static')]
 
 MEDIA_URL = 'media/'
 MEDIA_ROOT = 'media/'

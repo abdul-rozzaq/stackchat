@@ -18,11 +18,12 @@
                 <p>Name</p>
                 <input type="text" name="username" placeholder="Your name enter please" required>
                 <p>Email</p>
-                <input type="email" name="email" placeholder="Your name enter please" required> 
+                <input type="email" name="email" placeholder="Your name enter please" value="rayyan.dev@mail.ru" required>  
                 <p>Password</p>
-                <input type="password" name="passqord" placeholder="Your name enter please" required>
+                <input type="password" name="password" placeholder="Your name enter please" required>
                 <p></p>
                 <input type="submit" value="Submit">
+                <p>Do you have an account? <a href="{% url 'login' %}">Login</a></p>
             </form>
         </div>
     </div>
